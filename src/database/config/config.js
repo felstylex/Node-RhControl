@@ -1,14 +1,14 @@
-const Sequelize = require('sequelize');
-const path = require('path');
-require('dotenv').config({path: path.join(__dirname, '../','.env')});
+import { Sequelize } from "sequelize";
+import "dotenv/config";
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-    dialect: 'mysql',
-    host: process.env.DB_HOST,
-    port: process.env.PORT,
-}, {
-    define: {
-       freezeTableName: true, 
-    }
+const dbName = process.env.DB_NAME;
+const dbUser = process.env.DB_USER;
+const dbHost = process.env.DB_HOST;
+const dbPassword = process.env.DB_PASSWORD;
+
+const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
+  dialect: "mysql",
+  host: dbHost
 });
-module.exports = sequelize;
+
+export default sequelize;
